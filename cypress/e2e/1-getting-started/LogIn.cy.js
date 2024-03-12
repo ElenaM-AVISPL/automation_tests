@@ -1,12 +1,17 @@
 describe('Login page', () => {
   beforeEach(() => {
-    cy.visit('https://chi-qa-ui.vnocsymphony.com/')
+    cy.visit('/')
   })
 
   it('Correct log in', () => {
-   
-    cy.get('[title="Username"] > .MuiInput-input').type('elena.melnychenko@avispl.com')
-    cy.get('[title="Password"] > .MuiInput-input').type('12Qwsxzaq!')
+    cy.fixture('users').then((user) => {
+
+      // Ввод электронной почты из фикстуры
+      cy.get('[title="Username"] > .MuiInput-input').type(user.email);
+      // Ввод правильного пароля из фикстуры
+      cy.get('[title="Password"] > .MuiInput-input').type(user.correct_password);
+
+    })
     cy.get('.css-1xshq1t').click()
     //The main page should be visible
     cy.get('.css-czc5e9 > :nth-child(1)').should('be.visible')
@@ -16,6 +21,7 @@ describe('Login page', () => {
     cy.get('.css-1oexzeo').should('be.visible')
     cy.get('[title="Username"] > .MuiInput-input').should('contain.text','')
     cy.get('[title="Password"] > .MuiInput-input').should('contain.text','')
+
 
 
   })

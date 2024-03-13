@@ -66,7 +66,7 @@ describe('Login page', () => {
       cy.get('[title="Username"] > .MuiInput-input').type('elena.melnychenko@avispl.com')
       cy.get('[title="Password"] > .MuiInput-input').type('12Qwsxzaq!')
       cy.get('.css-1xshq1t').click()
-      //The user can be logged in with the correct data
+      //The users.json can be logged in with the correct data
 
 
   

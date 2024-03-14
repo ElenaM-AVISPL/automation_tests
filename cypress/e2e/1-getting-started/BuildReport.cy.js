@@ -4,9 +4,14 @@ describe('Build you own Report', () => {
     })
 
     it('Create/Delete Reports', () => {
-        //Log in
-        cy.get('[title="Username"] > .MuiInput-input').type('elena.melnychenko@avispl.com')
-        cy.get('[title="Password"] > .MuiInput-input').type('12Qwsxzaq!')
+        cy.fixture('users').then((user) => {
+
+            // Email from fixture
+            cy.get('[title="Username"] > .MuiInput-input').type(user.email);
+            // Password from fixture
+            cy.get('[title="Password"] > .MuiInput-input').type(user.correct_password);
+
+        })
         cy.get('.css-1xshq1t').click()
         //Open Report -> Dropdown
         cy.get('.css-czc5e9 > :nth-child(1) > .MuiGrid-item > .MuiButtonBase-root').click()

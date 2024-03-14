@@ -6,9 +6,9 @@ describe('Login page', () => {
     it('Correct log in', () => {
         cy.fixture('users').then((user) => {
 
-            // Ввод электронной почты из фикстуры
+            // Email from fixture
             cy.get('[title="Username"] > .MuiInput-input').type(user.email);
-            // Ввод правильного пароля из фикстуры
+            // Password from fixture
             cy.get('[title="Password"] > .MuiInput-input').type(user.correct_password);
 
         })
@@ -22,7 +22,7 @@ describe('Login page', () => {
         cy.get('.MuiGrid-direction-xs-column > .MuiTextField-root > .MuiOutlinedInput-root').type('15 min by autotests')
         cy.get('.css-z7g8xj').click()
         cy.get('.css-muew5m > .MuiGrid-item > .MuiTypography-root').should('contain.text',"Monitoring status : Paused")
-        cy.get('.css-1n5dmg6 > .MuiPaper-root').click()
+        cy.get(':nth-child(1) > .css-1n5dmg6 > .MuiPaper-root > .MuiGrid-direction-xs-column > .css-9whsf3 > .css-85rqva > .css-dvxtzn').click()
         cy.get('.css-muew5m > .MuiGrid-item > .MuiTypography-root').should('contain.text',"Monitoring status : Paused")
         cy.get('.MuiGrid-root > .MuiButton-root').click()
         cy.wait(900000)

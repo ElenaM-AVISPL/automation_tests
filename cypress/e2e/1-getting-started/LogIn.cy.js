@@ -6,16 +6,18 @@ describe('Login page', () => {
   it('Correct log in', () => {
     cy.fixture('users').then((user) => {
 
-      // Ввод электронной почты из фикстуры
+      // Email from fixture
       cy.get('[title="Username"] > .MuiInput-input').type(user.email);
-      // Ввод правильного пароля из фикстуры
+      // Password from fixture
       cy.get('[title="Password"] > .MuiInput-input').type(user.correct_password);
 
     })
+    cy.wait(1000)
     cy.get('.css-1xshq1t').click()
     //The main page should be visible
     cy.get('.css-czc5e9 > :nth-child(1)').should('be.visible')
-    cy.get('.MuiAvatar-img').click()
+    cy.get('.MuiAvatar-root').click()
+    cy.wait(1000)
     //Log out
     cy.get('.MuiButton-sizeLarge').click()
     cy.get('.css-1oexzeo').should('be.visible')
@@ -33,11 +35,11 @@ describe('Login page', () => {
     cy.get('.css-1xshq1t').click()
     //Error 'Symphony authentication failed' appears 
     cy.get('.MuiAlert-message').should('contain.text','Symphony authentication failed')
-    //Use deactivated users.json
+    //Use deactivated users
     cy.get('[title="Username"] > .MuiInput-input').clear().type('elena.melnychenko+17@avispl.com')
     cy.get('[title="Password"] > .MuiInput-input').clear().type('12Qwsxzaq@')
     cy.get('.css-1xshq1t').click()
-    //Error "Sorry, but your users.json account was deactivated. Please contact your administrator." appears
+    //Error "Sorry, but your users account was deactivated. Please contact your administrator." appears
     cy.get('.css-qo8fdw').should('contain.text','Sorry, but your user account was deactivated. Please contact your administrator.')
     cy.get('.css-19lndbj > .MuiTypography-root').click()
     //The error view

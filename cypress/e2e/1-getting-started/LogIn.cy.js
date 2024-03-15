@@ -12,12 +12,10 @@ describe('Login page', () => {
       cy.get('[title="Password"] > .MuiInput-input').type(user.correct_password);
 
     })
-    cy.wait(1000)
     cy.get('.css-1xshq1t').click()
     //The main page should be visible
     cy.get('.css-czc5e9 > :nth-child(1)').should('be.visible')
     cy.get('.MuiAvatar-root').click()
-    cy.wait(1000)
     //Log out
     cy.get('.MuiButton-sizeLarge').click()
     cy.get('.css-1oexzeo').should('be.visible')

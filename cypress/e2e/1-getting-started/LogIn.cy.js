@@ -1,6 +1,7 @@
 describe('Login page', () => {
   beforeEach(() => {
     cy.visit('/')
+
   })
 
   it('Correct log in', () => {

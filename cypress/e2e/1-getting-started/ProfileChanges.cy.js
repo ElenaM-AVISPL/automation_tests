@@ -2,7 +2,7 @@ describe('Login page', () => {
     beforeEach(() => {
         cy.visit('/')
     })
-
+//Changing Password from Password Tab
     it('Correct log in', () => {
         cy.fixture('users').then((user) => {
 

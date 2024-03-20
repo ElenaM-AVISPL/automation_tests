@@ -1,69 +1,71 @@
+import {loginPage} from "../../support/pageObject/loginPage";
+
 describe('Login page', () => {
     beforeEach(() => {
-        cy.visit('/')
+        loginPage.openLoginPage()
+        loginPage.inputUser()
+        loginPage.inputPass()
+        loginPage.clickLoginButton()
+        loginPage.acceptCoockies()
     })
-//Changing Password from Password Tab
+
     it('Correct log in', () => {
-        cy.fixture('users').then((user) => {
-
-            // Email from fixture
-            cy.get('[title="Username"] > .MuiInput-input').type(user.email);
-            // Password from fixture
-            cy.get('[title="Password"] > .MuiInput-input').type(user.correct_password);
-
-        })
-        cy.get('.css-1xshq1t').click()
+        //Changing Password from Password Tab
         //The main page should be visible
         cy.get('.css-czc5e9 > :nth-child(1)').should('be.visible')
         cy.get('.MuiAvatar-root').click()
-        //Choose Profile tab
+
+        //Choose Profile tab and Cancel button
         cy.get('.MuiTabs-flexContainer > :nth-child(3) > .MuiButtonBase-root > .MuiTypography-root').click()
         cy.get(':nth-child(1) > .css-15mij0t').should('be.visible')
-        cy.get('#mui-32-label').should('contain.text','First Name')
+        cy.get('.MuiInputLabel-root').eq(2).should('contain.text','First Name')
         cy.get('[type="text"]').eq(1).should('contain.value','auto test')
-        cy.get('#mui-33-label').should('contain.text','Last Name')
+        cy.get('.MuiInputLabel-root').eq(3).should('contain.text','Last Name')
         cy.get('[type="text"]').eq(2).should('contain.value','auto test')
         cy.get(':nth-child(2) > .css-15mij0t').should('contain.text','Contact information')
-        cy.get('#mui-34-label').should('contain.text','Email')
+        cy.get('.MuiInputLabel-root').eq(4).should('contain.text','Email')
         cy.get('[type="text"]').eq(3).should('contain.value','testautocy@gmail.com')
-        cy.get('#mui-35-label').should('contain.text','Phone')
+        cy.get('.MuiInputLabel-root').eq(5).should('contain.text','Phone')
         cy.get('[type="text"]').eq(4).type('123123')
-        cy.get('#mui-36-label').should('contain.text','Mobile')
+        cy.get('.MuiInputLabel-root').eq(6).should('contain.text','Mobile')
         cy.get('[type="text"]').eq(5).type('12Qwsxzaq@')
-        cy.get('#mui-37-label').should('contain.text','Address 1')
-        cy.get('[type="text"]').eq(6).type('123123')
-        cy.get('#mui-38-label').should('contain.text','Address 2')
-        cy.get('[type="text"]').eq(7).type('12Qwsxzaq@')
-        cy.get('#mui-39-label').should('contain.text','City')
-        cy.get('[type="text"]').eq(8).type('123123')
-        cy.get('#mui-40-label').should('contain.text','State')
+        cy.get('.MuiInputLabel-root').eq(7).should('contain.text','Address 1')
+        cy.get('[type="text"]').eq(6).type('Address number 1')
+        cy.get('.MuiInputLabel-root').eq(8).should('contain.text','Address 2')
+        cy.get('[type="text"]').eq(7).type('Address number 2')
+        cy.get('.MuiInputLabel-root').eq(9).should('contain.text','City')
+        cy.get('[type="text"]').eq(8).type('Toronto')
+        cy.get('.MuiInputLabel-root').eq(10).should('contain.text','State')
         cy.get('[type="text"]').eq(9).type('12Qwsxzaq@')
-        cy.get('#mui-41-label').should('contain.text','Zip')
+        cy.get('.MuiInputLabel-root').eq(11).should('contain.text','Zip')
         cy.get('[type="text"]').eq(10).type('123123')
+        cy.get('.MuiInputLabel-root').eq(12).should('contain.text','Country')
         cy.get(':nth-child(2) > .css-1gfbk2v > .MuiInput-root > .MuiSelect-select').click()
         cy.get('[data-value="United Kingdom"]').click()
         cy.get(':nth-child(3) > .css-15mij0t').should('contain.text','Preferences')
         cy.get(':nth-child(3) > .MuiFormControl-root > .MuiInput-root > .MuiSelect-select').click()
+        cy.get('.MuiInputLabel-root').eq(13).should('contain.text','Timezone')
         cy.contains('(UTC-07:00) Arizona').click()
         cy.get(':nth-child(4) > .MuiFormControl-root > .MuiInput-root > .MuiSelect-select').click()
         cy.get(':nth-child(4) > .css-15mij0t').should('contain.text','Preferred Language')
         cy.contains('French').click()
-        cy.get('#mui-42-label').should('contain.text','Title')
+        cy.get('.MuiInputLabel-root').eq(15).should('contain.text','Title')
         cy.get('[type="text"]').eq(11).type('text')
-        cy.get('#mui-43-label').should('contain.text','Department')
+        cy.get('.MuiInputLabel-root').eq(16).should('contain.text','Department')
         cy.get('[type="text"]').eq(12).type('state department')
-        cy.get('#mui-44-label').should('contain.text','Supervisor')
+        cy.get('.MuiInputLabel-root').eq(17).should('contain.text','Supervisor')
         cy.get('[type="text"]').eq(13).type('Supervisor')
-        cy.get('#mui-45-label').should('contain.text','Notes')
+        cy.get('.MuiInputLabel-root').eq(18).should('contain.text','Notes')
         cy.get('[type="text"]').eq(14).type('for notes')
-        cy.get('#mui-46-label').should('contain.text','Billing code')
+        cy.get('.MuiInputLabel-root').eq(19).should('contain.text','Billing code')
         cy.get('[type="text"]').eq(15).type('code 432')
         //Click Cancel
         cy.get('.css-1yr8k4a > .MuiTypography-root').click()
 
         //Open Again and check that the changes are not saved
         cy.get('.MuiAvatar-root').click()
-        //Choose Profile tab
+
+        //Choose Profile tab and save button
         cy.get('.MuiTabs-flexContainer > :nth-child(3) > .MuiButtonBase-root > .MuiTypography-root').click()
         cy.get(':nth-child(1) > .css-15mij0t').should('be.visible')
         cy.get('[type="text"]').eq(1).should('contain.value','auto test')

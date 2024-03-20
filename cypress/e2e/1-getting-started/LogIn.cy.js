@@ -1,19 +1,15 @@
+import {loginPage} from "../../support/pageObject/loginPage";
+
 describe('Login page', () => {
   beforeEach(() => {
-    cy.visit('/')
-
+      loginPage.openLoginPage()
+      loginPage.inputUser()
+      loginPage.inputPass()
+      loginPage.clickLoginButton()
+      loginPage.acceptCoockies()
   })
 
   it('Correct log in', () => {
-    cy.fixture('users').then((user) => {
-
-      // Email from fixture
-      cy.get('[title="Username"] > .MuiInput-input').type(user.email);
-      // Password from fixture
-      cy.get('[title="Password"] > .MuiInput-input').type(user.correct_password);
-
-    })
-    cy.get('.css-1xshq1t').click()
     //The main page should be visible
     cy.get('.css-czc5e9 > :nth-child(1)').should('be.visible')
     cy.get('.MuiAvatar-root').click()
@@ -22,18 +18,20 @@ describe('Login page', () => {
     cy.get('.css-1oexzeo').should('be.visible')
     cy.get('[title="Username"] > .MuiInput-input').should('contain.text','')
     cy.get('[title="Password"] > .MuiInput-input').should('contain.text','')
-
-
-
   })
 
   it('InCorrect log in', () => {
+    cy.get('.MuiAvatar-root').click()
+    //Log out
+    cy.get('.MuiButton-sizeLarge').click()
+
     //Use incorrect data
     cy.get('[title="Username"] > .MuiInput-input').type('elena.melnychenko1@avispl.com')
     cy.get('[title="Password"] > .MuiInput-input').type('12Qwsxzaq!')
     cy.get('.css-1xshq1t').click()
     //Error 'Symphony authentication failed' appears 
     cy.get('.MuiAlert-message').should('contain.text','Symphony authentication failed')
+
     //Use deactivated users
     cy.get('[title="Username"] > .MuiInput-input').clear().type('elena.melnychenko+17@avispl.com')
     cy.get('[title="Password"] > .MuiInput-input').clear().type('12Qwsxzaq@')

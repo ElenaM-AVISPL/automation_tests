@@ -1,18 +1,16 @@
+import {loginPage} from "../../support/pageObject/loginPage";
+
 describe('Build you own Report', () => {
     beforeEach(() => {
-        cy.visit('https://chi-qa-ui.vnocsymphony.com/')
+        loginPage.openLoginPage()
+        loginPage.inputUser()
+        loginPage.inputPass()
+        loginPage.clickLoginButton()
+        loginPage.acceptCoockies()
     })
 
     it('Create/Delete Reports', () => {
-        cy.fixture('users').then((user) => {
 
-            // Email from fixture
-            cy.get('[title="Username"] > .MuiInput-input').type(user.email);
-            // Password from fixture
-            cy.get('[title="Password"] > .MuiInput-input').type(user.correct_password);
-
-        })
-        cy.get('.css-1xshq1t').click()
         //Open Report -> Dropdown
         cy.get('.css-czc5e9 > :nth-child(1) > .MuiGrid-item > .MuiButtonBase-root').click()
         cy.get('[href="/bi/reports"] > .MuiGrid-root > .MuiTypography-root').click()

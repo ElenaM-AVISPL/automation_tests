@@ -39,7 +39,8 @@ describe('Login page', () => {
     //Error "Sorry, but your users account was deactivated. Please contact your administrator." appears
     cy.get('.css-qo8fdw').should('contain.text','Sorry, but your user account was deactivated. Please contact your administrator.')
     cy.get('.css-19lndbj > .MuiTypography-root').click()
-    //The error view
+
+    //The error views
     cy.get('.css-1qm1lh > .MuiTypography-root').should('contain.text','Sorry, but your user account was deactivated. Please contact your administrator.')
     cy.get(':nth-child(1) > .MuiGrid-container > .MuiGrid-grid-xs-2 > .MuiBox-root > .MuiTypography-root').should('contain.text','Error')
     cy.get(':nth-child(1) > .MuiGrid-container > .MuiGrid-grid-xs-10 > .MuiTypography-root').should('contain.text','SymphonyUserNotActiveException')

@@ -7,7 +7,6 @@ describe('Login page', () => {
         loginPage.inputPass()
         loginPage.clickLoginButton()
         loginPage.acceptCoockies()
-
     })
 
     it('Correct log in', () => {
@@ -60,21 +59,26 @@ describe('Login page', () => {
         cy.get('.MuiGrid-root > :nth-child(2) > .MuiButton-root > .MuiTypography-root').click()
         cy.get('input').eq(2).type('Cisco C40')
         cy.get('input').eq(3).type('Toronto John A MacDonald')
-        cy.get('input').eq(5).type('Toronto')
-        cy.get(':nth-child(5) > .MuiOutlinedInput-root > .MuiSelect-select').click()
+        cy.get('input').eq(6).type('Toronto')
+        cy.get(':nth-child(6) > .MuiOutlinedInput-root > .MuiSelect-select').click()
         cy.get('[data-value="Canada"]').click()
-        cy.get('input').eq(8).type('FTT1825000I')
-        cy.get('input').eq(9).type('E4:C7:22:67:A0:3A')
-        cy.get('input').eq(11).type('callserver-us1.vc.joinme.video')
-        cy.get(':nth-child(15) > .MuiOutlinedInput-root > .MuiSelect-select').click()
-        cy.get('[data-value="Codecs"]').click()
+        cy.get('input').eq(9).type('FTT1825000I')
+        cy.get('input').eq(10).type('E4:C7:22:67:A0:3A')
+        cy.get('input').eq(12).type('callserver-us1.vc.joinme.video')
         cy.get(':nth-child(16) > .MuiOutlinedInput-root > .MuiSelect-select').click()
-        cy.get('[data-value="Single Codecs"]').click()
-        cy.get('input').eq(18).type('Cisco')
-        cy.get('input').eq(19).type('C40')
-        cy.get('.css-z7g8xj').click()
+        cy.get('[data-value="Codecs"]').click({force:true})
+        cy.get(':nth-child(17) > .MuiOutlinedInput-root > .MuiSelect-select').click()
+        cy.get('[data-value="Single Codecs"]').click({force:true})
+        cy.get('input').eq(19).type('Cisco', {force:true})
+        cy.get('input').eq(20).type('C40', {force:true})
+        cy.get('.css-z7g8xj').click({force:true})
         cy.get('.css-14ct5id').should('contain.text', '1 Device')
-        cy.get('.MuiButton-root').eq(15).should('contain.text', 'Cisco C40')
+        cy.get('.MuiButton-root').eq(13).should('contain.text', 'Cisco C40')
+    })
+
+    after(()=>{
+        cy.clearAllCookies()
+        cy.clearAllLocalStorage()
     })
 
 

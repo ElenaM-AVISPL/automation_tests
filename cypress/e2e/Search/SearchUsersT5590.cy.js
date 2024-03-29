@@ -7,7 +7,6 @@ describe('Login page', () => {
         loginPage.inputPass()
         loginPage.clickLoginButton()
         loginPage.acceptCoockies()
-
     })
 
     it('Correct log in', () => {
@@ -65,11 +64,11 @@ describe('Login page', () => {
         cy.get('.css-z7g8xj').click()
         cy.get('.css-14ct5id').should('contain.text', '1 User')
         cy.get('.jss120 > .MuiButton-root').should('contain.text','testautocy@gmail.com')
+    })
 
-
-
-
-
+    after(()=>{
+        cy.clearAllCookies()
+        cy.clearAllLocalStorage()
     })
 
 

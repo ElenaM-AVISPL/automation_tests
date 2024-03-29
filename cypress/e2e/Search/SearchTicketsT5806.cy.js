@@ -7,7 +7,6 @@ describe('Login page', () => {
         loginPage.inputPass()
         loginPage.clickLoginButton()
         loginPage.acceptCoockies()
-
     })
 
     it('Correct log in', () => {
@@ -75,7 +74,10 @@ describe('Login page', () => {
 
     })
 
-
+    after(()=>{
+        cy.clearAllCookies()
+        cy.clearAllLocalStorage()
+    })
 
 
 

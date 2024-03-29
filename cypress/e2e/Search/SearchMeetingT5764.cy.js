@@ -7,7 +7,6 @@ describe('Login page', () => {
         loginPage.inputPass()
         loginPage.clickLoginButton()
         loginPage.acceptCoockies()
-
     })
 
     it('Correct log in', () => {
@@ -51,9 +50,11 @@ describe('Login page', () => {
         cy.get('.css-14ct5id').should('contain.text', '1 meeting')
 
 
+    })
 
-
-
+    after(()=>{
+        cy.clearAllCookies()
+        cy.clearAllLocalStorage()
     })
 
 

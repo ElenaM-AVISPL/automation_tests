@@ -2,11 +2,11 @@ import {loginPage} from "../../support/pageObject/loginPage";
 
 describe('Login page', () => {
   beforeEach(() => {
-      loginPage.openLoginPage()
-      loginPage.inputUser()
-      loginPage.inputPass()
-      loginPage.clickLoginButton()
-      loginPage.acceptCoockies()
+    loginPage.openLoginPage()
+    loginPage.inputUser()
+    loginPage.inputPass()
+    loginPage.clickLoginButton()
+    loginPage.acceptCoockies()
   })
 
   it('Correct log in', () => {
@@ -49,5 +49,10 @@ describe('Login page', () => {
     cy.get(':nth-child(3) > .MuiGrid-container > .MuiGrid-grid-xs-2 > .MuiBox-root > .MuiTypography-root').should('contain.text','Error Code')
     cy.get('.css-13ellyg').should('contain.text','Copy Error')
     cy.get('.css-z7g8xj').should('contain.text','Close').click()
+  })
+
+  after(()=>{
+    cy.clearAllCookies()
+    cy.clearAllLocalStorage()
   })
 })

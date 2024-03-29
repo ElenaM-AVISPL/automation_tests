@@ -14,14 +14,16 @@ describe('Login page', () => {
         //The main page should be visible
         cy.get('.css-czc5e9 > :nth-child(1) > .MuiGrid-item > .MuiButtonBase-root').click()
         cy.get('[href="/assets"] > .MuiGrid-root > .MuiTypography-root').click()
+        cy.wait(3000)
         cy.get('.css-1d7v3j3 > .MuiGrid-item > .MuiButton-root').click()
         //Choose Assets -> Accounts
         //Accout for autotest should be visible
         cy.get('.MuiList-root > [tabindex="0"]').click()
-        cy.get(':nth-child(1) > .css-1g6tcg4 > .css-10v05w1 > .jss88 > .jss89 > .MuiButton-root').should('be.visible')
+        //cy.get(':nth-child(1) > .css-1g6tcg4 > .css-10v05w1 > .jss88 > .jss89 > .MuiButton-root').should('be.visible')
+        cy.contains('Account for autotests')
         //Choose users tab
         cy.get('#c7f75ed5-d514-4791-890a-3524734fe3b9users').click()
-        cy.get(':nth-child(1) > .css-1g6tcg4 > .css-10v05w1 > .MuiGrid-container > .css-9y94a1 > .css-1orwh6x > .jss145 > .jss146 > .MuiButton-root').click()
+        cy.contains('testautocy+1@gmail.com').click()
         cy.get('.MuiGrid-direction-xs-column > :nth-child(3) > .MuiButton-root').should('contain.text','Reset Password').click()
         cy.contains('Reset Password')
         cy.get('.MuiGrid-grid-xs-4 > .MuiGrid-root > .MuiBox-root').should('contain.text','Password must have')
@@ -37,7 +39,7 @@ describe('Login page', () => {
         cy.get('.MuiDialogActions-root > .css-1dnniyh').click()
         cy.get('.css-1dnniyh').eq(0).click()
         //Log out and log in with the old password
-        cy.get('.MuiAvatar-root').click()
+        cy.get('.MuiButtonBase-root > .MuiAvatar-root').click()
         //Log out
         cy.get('.MuiButton-sizeLarge').click()
         cy.get('.css-1oexzeo').should('be.visible')
@@ -104,7 +106,7 @@ describe('Login page', () => {
             //Choose Assets -> Accounts
             //Accout for autotest should be visible
             cy.get('.MuiList-root > [tabindex="0"]').click()
-            cy.get(':nth-child(1) > .css-1g6tcg4 > .css-10v05w1 > .jss88 > .jss89 > .MuiButton-root').should('be.visible')
+            cy.contains('Account for autotests')
             //Choose users tab
             cy.get('#c7f75ed5-d514-4791-890a-3524734fe3b9users').click()
             cy.get(':nth-child(1) > .css-1g6tcg4 > .css-10v05w1 > .MuiGrid-container > .css-9y94a1 > .css-1orwh6x > .jss145 > .jss146 > .MuiButton-root').click()
@@ -127,6 +129,7 @@ describe('Login page', () => {
             //Log out and Log in with the new password
             cy.get('.MuiButton-sizeLarge').click()
             cy.get('.css-1oexzeo').should('be.visible')
+            cy.wait(2000)
             cy.get('[title="Username"] > .MuiInput-input').type('testautocy+1@gmail.com')
             cy.get('[title="Password"] > .MuiInput-input').type('12Qwsxzaq!')
             cy.get('.css-1xshq1t').click()
@@ -136,8 +139,11 @@ describe('Login page', () => {
             cy.get('.MuiButtonBase-root > .MuiAvatar-root').click()
             cy.get('.MuiButton-sizeLarge').click()
             cy.get('.css-1oexzeo').should('be.visible')
-
-
         })
+
+    after(()=>{
+        cy.clearAllCookies()
+        cy.clearAllLocalStorage()
+    })
 
     })

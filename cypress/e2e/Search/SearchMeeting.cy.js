@@ -21,10 +21,10 @@ describe('Login page', () => {
         cy.get('.css-sl0nme > .MuiOutlinedInput-root').should('contain.text','Id')
 
         //Search some Concrete Meeting
-        cy.get('input').eq(1).type('3104154')
-        cy.get('input').eq(2).clear().type('12192023')
-        cy.get('input').eq(3).clear().type('04212024')
-        cy.wait(2000)
+        cy.get('input').eq(1).type('3104145')
+        //cy.get('input').eq(2).clear().type('12192023')
+        //cy.get('input').eq(3).clear().type('04212024')
+        cy.wait(4000)
         cy.get('.css-1oldft0 > .MuiTypography-root').click()
         cy.get('.css-14ct5id').should('contain.text', '1 meeting')
 
@@ -45,7 +45,7 @@ describe('Login page', () => {
         cy.get('.css-36fdah > .MuiGrid-container > .MuiGrid-root').click()
         cy.get('.MuiGrid-root > :nth-child(2) > .MuiButton-root > .MuiTypography-root').click()
         cy.get('.MuiTabs-flexContainer > :nth-child(3)').click()
-        cy.get('[type="text"]').eq(1).type('3104154')
+        cy.get('[type="text"]').eq(1).type('3104145')
         cy.get('.css-z7g8xj').click()
         cy.get('.css-14ct5id').should('contain.text', '1 meeting')
 

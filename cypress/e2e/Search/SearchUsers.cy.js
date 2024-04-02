@@ -24,7 +24,7 @@ describe('Login page', () => {
         cy.get('.css-1oldft0 > .MuiTypography-root').click()
         cy.get('.css-14ct5id').should('contain.text', '3 Users')
 
-        //Search one Users
+        //Search some Users
         cy.get('.MuiGrid-root .MuiGrid-item > a > img').click()
         cy.get('.css-36fdah > .MuiGrid-container > .MuiGrid-root').click()
         cy.get('.MuiGrid-root > :nth-child(2) > .MuiButton-root > .MuiTypography-root').click()

@@ -65,7 +65,7 @@ describe('Login page', () => {
 
         //Choose users tab
         cy.get('#c7f75ed5-d514-4791-890a-3524734fe3b9users').click()
-        cy.get(':nth-child(1) > .css-1g6tcg4 > .css-10v05w1 > .MuiGrid-container > .css-9y94a1 > .css-1orwh6x > .jss145 > .jss146 > .MuiButton-root').click()
+        cy.contains('testautocy+1@gmail.com').click()
         cy.get('.MuiGrid-direction-xs-column > :nth-child(3) > .MuiButton-root').should('contain.text','Reset Password').click()
         cy.contains('Reset Password')
         cy.get('.MuiGrid-grid-xs-4 > .MuiGrid-root > .MuiBox-root').should('contain.text','Password must have')
@@ -109,7 +109,7 @@ describe('Login page', () => {
             cy.contains('Account for autotests')
             //Choose users tab
             cy.get('#c7f75ed5-d514-4791-890a-3524734fe3b9users').click()
-            cy.get(':nth-child(1) > .css-1g6tcg4 > .css-10v05w1 > .MuiGrid-container > .css-9y94a1 > .css-1orwh6x > .jss145 > .jss146 > .MuiButton-root').click()
+            cy.contains('testautocy+1@gmail.com').click()
             cy.get('.MuiGrid-direction-xs-column > :nth-child(3) > .MuiButton-root').should('contain.text','Reset Password').click()
             cy.contains('Reset Password')
             cy.get('.MuiGrid-grid-xs-4 > .MuiGrid-root > .MuiBox-root').should('contain.text','Password must have')

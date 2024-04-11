@@ -33,6 +33,7 @@ describe('TestChannelAddDelete', () => {
         cy.get('.css-1wxaqej > .MuiGrid-wrap-xs-nowrap > .MuiTypography-root').should('contain.text','Add Channel')
         cy.get('input').last().type('4test')
         cy.contains('Save').click()
+        //The changes are saved
         cy.wait(1000)
         cy.get('.MuiPaper-root > .MuiGrid-direction-xs-column > .css-9ninui > .MuiGrid-root').should('contain.text','4test')
         //Try to save the Channel with same name and the error appears

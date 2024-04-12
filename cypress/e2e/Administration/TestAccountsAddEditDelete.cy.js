@@ -1,0 +1,145 @@
+import {loginPage} from "../../support/pageObject/loginPage";
+
+describe('TestAccountAddEditDelete', () => {
+    beforeEach(() => {
+        loginPage.openLoginPage()
+        loginPage.inputUser()
+        loginPage.inputPass()
+        loginPage.clickLoginButton()
+        loginPage.acceptCoockies()
+    })
+
+    it('Create an Account', () => {
+//The main page should be visible
+        cy.get('.css-czc5e9 > :nth-child(1) > .MuiGrid-item > .MuiButtonBase-root').click()
+        cy.get('[href="/assets"] > .MuiGrid-root > .MuiTypography-root').click()
+        cy.get('.css-1d7v3j3 > .MuiGrid-item > .MuiButton-root').click()
+        //Choose Assets -> Accounts
+        //Automation account should be visible
+        cy.get('.MuiList-root > [tabindex="0"]').click()
+        //Click Administration tab and check the visible icons
+        cy.get('.MuiTabs-flexContainer > :nth-child(2) > .MuiButtonBase-root').click()
+        cy.get('[aria-label="Add"] > .MuiButtonBase-root').should('be.visible')
+        cy.get('[aria-label="Export"] > .MuiButtonBase-root').should('be.visible')
+        cy.get('[aria-label="Columns"] > .MuiButtonBase-root').should('be.visible')
+        cy.get('[aria-label="Refresh"] > .MuiButtonBase-root').should('be.visible')
+        //Click Add button
+        //Check all the fields
+        cy.get('[aria-label="Add"] > .MuiButtonBase-root').click()
+        cy.get('.css-kspudp > .MuiGrid-container > .MuiTypography-body1').should('contain.text','Add Account')
+        cy.get('legend').eq(1).should('contain.text','Name')
+        cy.get('.MuiFormControlLabel-root > .MuiTypography-root').should('contain.text','Account is active')
+        cy.get('.MuiFormControlLabel-root').should('not.have.class', 'Mui-checked')
+        //cy.get('p').eq(43).should('contain.text','Details')
+        cy.get('legend').eq(3).should('contain.text','Parent Account')
+        cy.get('legend').eq(4).should('contain.text','Channel')
+        cy.get('legend').eq(5).should('contain.text','Account Manager')
+        cy.get('legend').eq(6).should('contain.text','Help Desk Email')
+        cy.get('legend').eq(7).should('contain.text','Help Desk Phone')
+        cy.get('legend').eq(8).should('contain.text','Type')
+        cy.get('legend').eq(9).should('contain.text','Notes')
+        cy.get('legend').eq(10).should('contain.text','External ID')
+        cy.get('legend').eq(11).should('contain.text','Contract Start Date')
+        cy.get('legend').eq(12).should('contain.text','Contract End Date')
+        cy.get('legend').eq(13).should('contain.text','Reference Number')
+        cy.get('legend').eq(14).should('contain.text','Consumption')
+        cy.get('legend').eq(15).should('contain.text','Cloud Connector')
+        cy.get('.css-1dnniyh').click()
+        //Add the data
+        cy.get('[aria-label="Add"] > .MuiButtonBase-root').click()
+        cy.get('input').eq(8).type('1')
+        cy.get('.MuiFormControlLabel-root').click()
+        cy.get('.MuiGrid-direction-xs-column > .MuiGrid-container > .MuiFormControl-root > .MuiOutlinedInput-root > .MuiSelect-select').click()
+        cy.get('[data-value="2"]').click()
+        cy.get('input').eq(12).type('Manager 1')
+        cy.get('input').eq(13).type('emeail.test')
+        cy.get('input').eq(14).type('23233232')
+        cy.get('input').eq(15).type('one type')
+        cy.get('input').eq(16).type('1')
+        cy.wait(2000)
+        cy.get(':nth-child(7) > .MuiOutlinedInput-root').type('There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isnt anything embarrassing hidden in the middle of text. ')
+        cy.get(':nth-child(9) > .MuiFormControl-root > .MuiOutlinedInput-root > .MuiInputAdornment-root > .MuiButtonBase-root').click()
+        cy.get(':nth-child(1) > :nth-child(4) > .MuiButtonBase-root').click()
+        cy.get(':nth-child(10) > .MuiFormControl-root > .MuiOutlinedInput-root > .MuiInputAdornment-root > .MuiButtonBase-root').click()
+        cy.get(':nth-child(1) > :nth-child(6) > .MuiButtonBase-root').eq(0).click()
+        cy.get(':nth-child(12) > .MuiOutlinedInput-root > .MuiSelect-select').click()
+        cy.get('[data-value="Managed Service"]').click()
+        cy.wait(1000)
+        cy.get(':nth-child(13) > .MuiOutlinedInput-root > .MuiSelect-select').click()
+
+        cy.get('[data-value="AVI Hosted"]').click()
+        cy.wait(5000)
+        cy.get('button').contains('Add').click()
+        cy.wait(10000)
+
+        //Check that the account is added
+        cy.get(':nth-child(1) > .css-1g6tcg4 > .css-10v05w1 > .MuiGrid-container > .css-9y94a1').should('contain.text','1')
+        cy.get(':nth-child(1) > .css-1g6tcg4 > .css-10v05w1 > .MuiGrid-container > .css-9y94a1').click()
+        cy.get(':nth-child(3) > span[aria-label=""] > .MuiButton-root').click()
+        cy.wait(3000)
+
+        //Check that the data in the account is correct
+        cy.get('.MuiGrid-direction-xs-column > .MuiGrid-root > .MuiTypography-root').click()
+        cy.get('input').eq(2).should('contain.value','1')
+        //cy.get('.MuiFormControlLabel-root').should('be.checked')
+        cy.get('.MuiGrid-direction-xs-column > .MuiGrid-container > .MuiFormControl-root > .MuiOutlinedInput-root > .MuiSelect-select').should('contain.text','AVI-SPL')
+        cy.get('input').eq(6).should('contain.value','Manager 1')
+        cy.get('input').eq(7).should('contain.value','emeail.test')
+        cy.get('input').eq(8).should('contain.value','23233232')
+        cy.get('input').eq(9).should('contain.value','one type')
+        cy.get('input').eq(10).should('contain.value','1')
+        cy.wait(2000)
+        cy.get(':nth-child(7) > .MuiOutlinedInput-root').should('contain.text','There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of Lorem Ipsum, you')
+        cy.get(':nth-child(12) > .MuiOutlinedInput-root > .MuiSelect-select').should('contain.text','Managed Service')
+        cy.wait(1000)
+        cy.get(':nth-child(13) > .MuiOutlinedInput-root > .MuiSelect-select').should('contain.text','AVI Hosted')
+        cy.contains('Cancel').click()
+        //Add the license
+        cy.get('[data-testid="CloudUploadOutlinedIcon"]').click()
+        cy.get('input[type="file"]').selectFile('cypress/fixtures/test_license.lac',{force:true})
+        cy.get('.css-z7g8xj > .MuiTypography-root').click()
+        cy.wait(3000)
+        cy.get('[aria-label="Edit Account"] > .MuiPaper-root > .MuiButtonBase-root > .css-mweiv9').click()
+        //Edit the account
+        cy.get('input').eq(6).clear().type('Manager 2')
+        cy.get('input').eq(7).clear().type('newemeail.test')
+        cy.get('input').eq(8).clear().type('2323323211111')
+        cy.get('input').eq(9).clear().type('two type')
+        cy.get('input').eq(10).clear().type('2')
+        cy.wait(2000)
+        cy.get(':nth-child(7) > .MuiOutlinedInput-root').clear().type('No text')
+        cy.wait(2000)
+        cy.contains('Save').click()
+        //Check that the changes are applied
+        cy.get('[aria-label="Edit Account"] > .MuiPaper-root > .MuiButtonBase-root > .css-mweiv9').click()
+        //Edit the account
+        cy.get('input').eq(6).should('contain.value','Manager 2')
+        cy.get('input').eq(7).should('contain.value','newemeail.test')
+        cy.get('input').eq(8).should('contain.value','2323323211111')
+        cy.get('input').eq(9).should('contain.value','two type')
+        cy.get('input').eq(10).should('contain.value','2')
+        cy.wait(2000)
+        cy.get(':nth-child(7) > .MuiOutlinedInput-root').should('contain.text','No text')
+        cy.contains('Cancel').click()
+
+        //Delete the account
+        cy.get('[data-testid="MenuIcon"]').click()
+        cy.get('[href="/assets"] > .MuiGrid-root > .MuiTypography-root').click()
+        cy.get('.css-1d7v3j3 > .MuiGrid-item > .MuiButton-root').click()
+        cy.get('.MuiList-root > [tabindex="0"]').click()
+        cy.get('.MuiTabs-flexContainer > :nth-child(2) > .MuiButtonBase-root').click()
+        cy.get(':nth-child(1) > .css-1g6tcg4 > .css-10v05w1 > .MuiGrid-container > .css-1wxaqej > .MuiCheckbox-root > .PrivateSwitchBase-input').click()
+        cy.get('[aria-label="Delete"] > .MuiButton-root').click()
+        cy.get('.MuiDialogContent-root > .MuiTypography-root').should('contain.text','Are you sure you want to delete this account?')
+        cy.get('.css-1q77095 > .MuiTypography-root').click({force:true})
+        cy.get(':nth-child(1) > .css-1g6tcg4 > .css-10v05w1 > .MuiGrid-container > .css-9y94a1').should('not.contain.text','1')
+        cy.wait(2000)
+
+
+
+    })
+    after(()=>{
+        cy.clearAllCookies()
+        cy.clearAllLocalStorage()
+    })
+})

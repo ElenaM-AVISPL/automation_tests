@@ -58,7 +58,6 @@ describe('TestLocationAddEditDelete', () => {
         cy.get('legend').eq(9).should('contain.text','Country')
         cy.get('legend').eq(10).should('contain.text','Timezone')
         cy.get('legend').eq(11).should('contain.text','Geo Location')
-        //cy.get('input').eq(11).should('contain.text','Address 1')
         //Add the data and save the Location
         cy.get('input').eq(8).type('1')
         cy.get('input').eq(9).click()

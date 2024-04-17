@@ -28,7 +28,7 @@ describe('Build you own Report', () => {
         cy.get('.css-17opruk').eq(0).type('123hmtest4')
         cy.get('.css-z7g8xj').click()
         cy.wait(10000)
-        //Find the adding Report
+        //Find the adding Report in the list
         cy.get('.MuiButton-endIcon>[data-testid="ArrowDropDownIcon"]>path').click()
         cy.get('[value="Build Your Own Report"]').click()
         cy.contains('123hmtest4')

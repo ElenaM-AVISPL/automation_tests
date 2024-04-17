@@ -123,7 +123,7 @@ describe('Login page', () => {
         cy.wait(5000)
         //Success message
         cy.get('.css-1w1y9ry').should('contain.text','Success')
-        cy.get('.css-qo8fdw').should('contain.text','The profile was successfully updated')
+        cy.get('[direction="up"] > .MuiPaper-root').should('contain.text','The profile was successfully updated')
         cy.get('.MuiButton-sizeLarge').click({force: true})
         // Log out
         cy.get('.css-1oexzeo').should('be.visible')
@@ -169,7 +169,7 @@ describe('Login page', () => {
         cy.get('.css-z7g8xj').click()
         cy.wait(5000)
         cy.get('.css-1w1y9ry').should('contain.text','Success')
-        cy.get('.css-qo8fdw').should('contain.text','The profile was successfully updated')
+        cy.get('[direction="up"] > .MuiPaper-root').should('contain.text','The profile was successfully updated')
         cy.get('.MuiButton-sizeLarge').click()
         cy.get('.css-1oexzeo').should('be.visible')
         cy.get('[title="Username"] > .MuiInput-input').should('contain.text','')

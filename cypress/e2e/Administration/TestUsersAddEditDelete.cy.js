@@ -135,7 +135,7 @@ describe('TestUserAddEditDelete', () => {
         cy.get('input').eq(22).clear().type('555444')
         cy.get(':nth-child(2) > .MuiButtonBase-root > .MuiFormLabel-root').click()
         cy.get(':nth-child(1) > .MuiOutlinedInput-root > .MuiSelect-select').click()
-        cy.get('[data-value="10"]').click({force:true})
+        cy.get('[data-value="56"]').click({force:true})
         cy.get('.css-z7g8xj').click()
         //Check that the changes after editing are saved
         cy.get(':nth-child(1) > .MuiButtonBase-root > .MuiFormLabel-root').click()
@@ -168,7 +168,7 @@ describe('TestUserAddEditDelete', () => {
         cy.get(':nth-child(1) > .MuiButtonBase-root > .MuiFormLabel-root').click()
         cy.get(':nth-child(3) > .MuiButtonBase-root > .MuiFormLabel-root').click()
         cy.get('.MuiTabs-flexContainer > :nth-child(2) > .MuiButtonBase-root').click({force:true})
-        cy.get(':nth-child(1) > .MuiOutlinedInput-root > .MuiSelect-select').should('contain.text','Symphony Service Role')
+        cy.get(':nth-child(1) > .MuiOutlinedInput-root > .MuiSelect-select').should('contain.text','Admin assign roles')
         cy.get('.css-z7g8xj').click()
         //Delete the user
         cy.get('.css-10v05w1 > .MuiGrid-container > .css-1wxaqej > .MuiCheckbox-root > .PrivateSwitchBase-input').click()

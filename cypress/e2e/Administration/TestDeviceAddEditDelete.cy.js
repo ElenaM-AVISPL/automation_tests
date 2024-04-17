@@ -125,7 +125,7 @@ describe('TestDeviceAddEditDelete', () => {
         cy.get('.css-z7g8xj > .MuiTypography-root').click()
         cy.get(':nth-child(1) > .css-1g6tcg4 > .css-10v05w1 > .MuiGrid-container > .css-9y94a1 > .jss143 > .jss144 > .MuiButton-root').should('contain.text','AAA Test Auto')
         cy.get('.css-1w1y9ry').should('contain.text','Success')
-        cy.get('.css-qo8fdw').should('contain.text','The device was successfully added')
+        cy.get('[direction="up"] > .MuiPaper-root').should('contain.text','The device was successfully added')
         //Edit the Device data
         cy.get(':nth-child(1) > .css-1g6tcg4 > .css-10v05w1 > .MuiGrid-container > .css-9y94a1 > .jss143 > .jss144 > .MuiButton-root').click()
         cy.wait(5000)

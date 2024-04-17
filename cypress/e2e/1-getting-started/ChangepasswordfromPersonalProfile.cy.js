@@ -45,7 +45,7 @@ describe('Login page', () => {
       cy.get('.MuiGrid-wrap-xs-nowrap > .MuiButton-root').should('contain.text','Change').click()
       cy.wait(2000)
       cy.get('.css-1w1y9ry').should('contain.text','Success')
-      cy.get('.css-qo8fdw').should('contain.text','Your password has been successfully updated.')
+      cy.get('[direction="up"] > .MuiPaper-root').should('contain.text','Your password has been successfully updated.')
       cy.get('.MuiGrid-wrap-xs-nowrap > .MuiButton-root').click()
 
       // Log out

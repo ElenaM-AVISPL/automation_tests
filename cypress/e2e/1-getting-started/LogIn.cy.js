@@ -37,7 +37,7 @@ describe('Login page', () => {
     cy.get('[title="Password"] > .MuiInput-input').clear().type('12Qwsxzaq@')
     cy.get('.css-1xshq1t').click()
     //Error "Sorry, but your users account was deactivated. Please contact your administrator." appears
-    cy.get('.css-qo8fdw').should('contain.text','Sorry, but your user account was deactivated. Please contact your administrator.')
+    cy.get('[direction="up"] > .MuiPaper-root').should('contain.text','Sorry, but your user account was deactivated. Please contact your administrator.')
     cy.get('.css-19lndbj > .MuiTypography-root').click()
 
     //The error views

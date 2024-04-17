@@ -53,9 +53,9 @@ describe('TestChannelAddDelete', () => {
         cy.wait(1000)
         cy.get('[aria-label="Delete"]').eq(1).click()
         cy.wait(1000)
-        cy.get('.MuiGrid-direction-xs-column > :nth-child(1) > .MuiGrid-wrap-xs-nowrap > .MuiTypography-root').should('contain.text','Delete Channel')
-        cy.get('.MuiGrid-direction-xs-column-reverse > :nth-child(1) > .MuiGrid-item > .MuiTypography-body1').should('contain.text','Please confirm you want to remove the selected channels.')
-        cy.contains('Confirm').click()
+        cy.contains('Delete Channel').click()
+        cy.get('.MuiDialogContent-root > .MuiTypography-root').should('contain.text','Are you sure you want to delete this channel?')
+        cy.get('button').contains('Delete Channel').click()
         cy.get('.css-1q3d0xc > .MuiPaper-root > .MuiGrid-direction-xs-column').should('not.contain.text','4test')
         cy.wait(1000)
 
